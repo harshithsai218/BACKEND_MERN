@@ -19,7 +19,7 @@ async function getCoordsForAddress(address){
   const coorLon = data.lon;
   const coordinates = {
     lat: coorLat,
-    lng: coorLon
+    long: coorLon
   };
     return coordinates;
 }

@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const express =require("express");
 const bodyParser = require("body-parser");
 
@@ -27,4 +28,11 @@ app.use((error,req,res,next)=>{
     res.json({message:error.message||'An Unknown error occured'});
 });
 
-app.listen(5000);
+mongoose
+    .connect('mongodb+srv://MERN:141312@mern.qepcug5.mongodb.net/places?retryWrites=true&w=majority&appName=MERN')
+    .then(()=>{
+        app.listen(5000);
+    })
+    .catch(err=>{
+        console.log(err);
+    });
