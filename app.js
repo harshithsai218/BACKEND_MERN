@@ -29,7 +29,7 @@ app.use((error,req,res,next)=>{
 });
 
 mongoose
-    .connect('mongodb+srv://MERN:141312@mern.qepcug5.mongodb.net/places?retryWrites=true&w=majority&appName=MERN')
+    .connect('mongodb+srv://MERN:141312@mern.qepcug5.mongodb.net/mern_main?retryWrites=true&w=majority&appName=MERN')
     .then(()=>{
         app.listen(5000);
     })
