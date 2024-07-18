@@ -5,7 +5,7 @@ const schema = mongoose.Schema;
 
 const placesSchema = new schema({
     title: {type:String,reqired:true},
-    descrpition: {type:String,reqired:true},
+    description: {type:String,reqired:true},
     image: {type:String,reqired:true},
     address: {type:String,reqired:true},
     location: {
