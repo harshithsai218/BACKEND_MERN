@@ -10,6 +10,17 @@ const app=express();
 
 app.use(bodyParser.json())
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  );
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
+
+  next();
+});
+
 app.use('/api/places',placesRoutes);
 
 app.use('/api/users',usersRoutes);
@@ -28,7 +39,7 @@ app.use((req,res,next)=>{
 });
 
 mongoose
-    .connect('mongodb+srv://MERN:141312@mern.qepcug5.mongodb.net/mern_main?retryWrites=true&w=majority&appName=MERN')
+    .connect('mongodb+srv://MERN:141312@mern.qepcug5.mongodb.net/mern_places?retryWrites=true&w=majority&appName=MERN')
     .then(()=>{
         app.listen(5000);
     })
