@@ -1,4 +1,4 @@
-const uuid = require('uuid').v4;
+const fs= require('fs');
 const {validationResult}=require("express-validator");
 const mongoose = require("mongoose");
 
@@ -28,6 +28,8 @@ const getPlaceById = async (req, res, next) => {
       );
       return next(error);
     }
+
+
   
     res.json({ place: place.toObject({ getters: true }) });
   };
@@ -83,8 +85,7 @@ const getPlaceById = async (req, res, next) => {
       description,
       address,
       location: coordinates,
-      image:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Empire_State_Building_%28aerial_view%29.jpg/400px-Empire_State_Building_%28aerial_view%29.jpg',
+      image:req.file.path,
       creator
     });
   
@@ -177,6 +178,8 @@ const getPlaceById = async (req, res, next) => {
       const error = new HttpError('Could not find place for this id.', 404);
       return next(error);
     }
+
+    const imagePath = place.image;
   
     try {
       const sess = await mongoose.startSession();
@@ -192,6 +195,10 @@ const getPlaceById = async (req, res, next) => {
       );
       return next(error);
     }
+    
+    fs.unlink(imagePath,err=>{
+      console.log(err);
+    });
     
     res.status(200).json({ message: 'Deleted place.' });
   };

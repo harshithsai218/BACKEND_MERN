@@ -38,7 +38,7 @@ const Signup = async (req,res,next)=>{
     const createdUser =new User({
         name,
         email,
-        image:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/640px-User_icon_2.svg.png',
+        image:req.file.path,
         password,
         places:[]
     });
