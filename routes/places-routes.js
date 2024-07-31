@@ -8,6 +8,9 @@ const router =express.Router()
 
 router.get('/:pid',placesControllers.getPlaceById);
 router.get('/user/:uid',placesControllers.getPlacesByUserId);
+
+//router.use();
+
 router.post('/',fileUpload.single('image'),[
     check('title').not().isEmpty(),
     check('description').isLength({min:5}),
